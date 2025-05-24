@@ -1,6 +1,6 @@
 {
-  "name": "Market Price Tracker",
-  "short_name": "PriceTracker",
+  "name": "BoraBuy",
+  "short_name": "bora-buy",
   "description": "Track supplier prices for your market business",
   "start_url": "/",
   "display": "standalone",

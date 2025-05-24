@@ -8,7 +8,7 @@ import { Toaster } from "@/components/ui/toaster"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Market Price Tracker",
+  title: "BoraBuy",
   description: "Track supplier prices for your market business",
   manifest: "/manifest.json",
   themeColor: "#2563eb",
@@ -16,9 +16,9 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Price Tracker",
+    title: "BoraBuy"
   },
-    generator: 'v0.dev'
+    
 }
 
 export default function RootLayout({
