@@ -1,7 +1,7 @@
 {
-  "name": "BoraBuy",
-  "short_name": "bora-buy",
-  "description": "Track supplier prices for your market business",
+  "name": "BoraBuy Price Tracker",
+  "short_name": "BoraBuy",
+  "description": "Track and compare supplier prices for your business",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -11,12 +11,14 @@
     {
       "src": "/icon-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/icon-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }

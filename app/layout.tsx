@@ -1,9 +1,7 @@
-import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
-import { AuthProvider } from "@/contexts/auth-context"
-import { Toaster } from "@/components/ui/toaster"
+import { ClientProviders } from "./components/client-providers"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -18,7 +16,6 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
     title: "BoraBuy"
   },
-    
 }
 
 export default function RootLayout({
@@ -34,21 +31,9 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       </head>
       <body className={inter.className}>
-        <AuthProvider>
+        <ClientProviders>
           {children}
-          <Toaster />
-        </AuthProvider>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function() {
-                  navigator.serviceWorker.register('/sw.js');
-                });
-              }
-            `,
-          }}
-        />
+        </ClientProviders>
       </body>
     </html>
   )
