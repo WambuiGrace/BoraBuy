@@ -139,6 +139,11 @@ export default function AuthPage() {
                     required
                   />
                 </div>
+                <div className="text-right">
+                  <Button variant="link" className="px-0 text-sm text-blue-600" onClick={() => router.push("/auth/forgot-password")}>
+                    Forgot password?
+                  </Button>
+                </div>
                 <Button type="submit" className="w-full" disabled={loading}>
                   {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                   Sign In

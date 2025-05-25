@@ -5,6 +5,7 @@ import type React from "react"
 import { createContext, useContext, useEffect, useState } from "react"
 import type { User } from "@supabase/supabase-js"
 import { getSupabaseClient } from "@/lib/supabase"
+import { useRouter } from "next/navigation"
 
 interface AuthContextType {
   user: User | null
@@ -30,6 +31,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
   const supabase = getSupabaseClient()
+  const router = useRouter()
 
   useEffect(() => {
     // Get initial session
@@ -51,6 +53,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const signOut = async () => {
     await supabase.auth.signOut()
+    router.push("/auth")
   }
 
   return <AuthContext.Provider value={{ user, loading, signOut }}>{children}</AuthContext.Provider>
