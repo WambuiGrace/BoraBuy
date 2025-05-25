@@ -105,7 +105,7 @@ export default function AuthPage() {
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
             <Store className="h-6 w-6 text-blue-600" />
           </div>
-          <CardTitle className="text-2xl">Market Price Tracker</CardTitle>
+          <CardTitle className="text-2xl">BoraBuy Price Tracker</CardTitle>
           <CardDescription>Track supplier prices for your business</CardDescription>
         </CardHeader>
         <CardContent>
