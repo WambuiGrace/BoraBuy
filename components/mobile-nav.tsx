@@ -29,9 +29,17 @@ export function MobileNav() {
         <div className="flex items-center justify-between p-4">
           <h1 className="text-lg font-semibold">Price Tracker</h1>
           <div className="flex items-center space-x-2">
-            <Button variant="ghost" size="icon">
-              <Bell className="h-5 w-5" />
-            </Button>
+            <Link href="/notifications">
+              <Button 
+                variant="ghost" 
+                size="icon"
+                className={cn(
+                  pathname === "/notifications" ? "bg-blue-100 text-blue-700" : ""
+                )}
+              >
+                <Bell className="h-5 w-5" />
+              </Button>
+            </Link>
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
@@ -68,7 +76,10 @@ export function MobileNav() {
                     <Link
                       href="/profile"
                       onClick={() => setOpen(false)}
-                      className="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100"
+                      className={cn(
+                        "flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium",
+                        pathname === "/profile" ? "bg-blue-100 text-blue-700" : "text-gray-700 hover:bg-gray-100"
+                      )}
                     >
                       <User className="h-5 w-5" />
                       <span>Profile</span>
@@ -76,7 +87,10 @@ export function MobileNav() {
                     <Link
                       href="/settings"
                       onClick={() => setOpen(false)}
-                      className="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100"
+                      className={cn(
+                        "flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium",
+                        pathname === "/settings" ? "bg-blue-100 text-blue-700" : "text-gray-700 hover:bg-gray-100"
+                      )}
                     >
                       <Settings className="h-5 w-5" />
                       <span>Settings</span>
