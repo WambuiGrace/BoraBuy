@@ -23,7 +23,7 @@ export default function ForgotPasswordPage() {
 
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: process.env.NEXT_PUBLIC_SITE_URL || `${window.location.origin}/auth/reset-password`,
+        redirectTo: 'https://bora-buy.vercel.app/auth/reset-password',
       })
 
       if (error) throw error
