@@ -5,7 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useAuth } from "@/contexts/auth-context"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 import { Home, Package, Users, Plus, BarChart3, Settings, Menu, LogOut, Bell, User } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -49,7 +49,7 @@ export function MobileNav() {
               <SheetContent side="right" className="w-64">
                 <div className="flex flex-col h-full">
                   <div className="py-4">
-                    <h2 className="text-lg font-semibold">Menu</h2>
+                    <SheetTitle className="text-lg font-semibold">Menu</SheetTitle>
                   </div>
 
                   <nav className="flex-1 space-y-2">

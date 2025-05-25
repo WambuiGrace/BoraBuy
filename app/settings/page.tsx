@@ -19,7 +19,7 @@ export default function SettingsPage() {
     pushNotifications: true,
     darkMode: false,
     language: "en",
-    currency: "USD",
+    currency: "KSH",
   });
 
   const handleSave = async () => {
@@ -28,7 +28,7 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto py-8 px-4 max-w-4xl">
       <h1 className="text-2xl font-bold mb-6">Settings</h1>
       <div className="grid grid-cols-1 gap-6">
         <Card>
@@ -112,9 +112,9 @@ export default function SettingsPage() {
                   <SelectValue placeholder="Select Currency" />
                 </SelectTrigger>
                 <SelectContent>
+                  <SelectItem value="KSH">KSH (KSh)</SelectItem>
                   <SelectItem value="USD">USD ($)</SelectItem>
                   <SelectItem value="EUR">EUR (€)</SelectItem>
-                  <SelectItem value="GBP">GBP (£)</SelectItem>
                 </SelectContent>
               </Select>
             </div>

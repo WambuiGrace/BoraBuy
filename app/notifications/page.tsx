@@ -77,7 +77,7 @@ export default function NotificationsPage() {
   };
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto py-8 px-4 max-w-4xl">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Notifications</h1>
         <Button variant="outline" onClick={markAllAsRead}>

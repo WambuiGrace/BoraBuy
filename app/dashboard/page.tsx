@@ -6,7 +6,7 @@ import { getSupabaseClient } from "@/lib/supabase"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import type { PriceEntry } from "@/types/database"
-import { Package, Users, DollarSign, Plus, BarChart3 } from "lucide-react"
+import { Package, Users, DollarSign, Plus, BarChart3, Coins } from "lucide-react"
 import Link from "next/link"
 import { MobileNav } from "@/components/mobile-nav"
 
@@ -131,9 +131,9 @@ export default function Dashboard() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600">Avg Price</p>
-                  <p className="text-2xl font-bold">${stats.avgPrice.toFixed(2)}</p>
+                  <p className="text-2xl font-bold">KSh {stats.avgPrice.toFixed(2)}</p>
                 </div>
-                <DollarSign className="h-8 w-8 text-orange-600" />
+                <Coins className="h-8 w-8 text-orange-600" />
               </div>
             </CardContent>
           </Card>
@@ -198,11 +198,10 @@ export default function Dashboard() {
                     <div className="flex-1">
                       <p className="font-medium">{entry.product?.name}</p>
                       <p className="text-sm text-gray-600">{entry.supplier?.name}</p>
-                      <p className="text-xs text-gray-500">{new Date(entry.entry_date).toLocaleDateString()}</p>
                     </div>
                     <div className="text-right">
-                      <p className="font-bold text-lg">${Number(entry.price).toFixed(2)}</p>
-                      <p className="text-sm text-gray-600">per {entry.product?.unit}</p>
+                      <p className="font-medium">KSh {entry.price.toFixed(2)}</p>
+                      <p className="text-sm text-gray-600">{entry.quantity} {entry.product?.unit}</p>
                     </div>
                   </div>
                 ))}
