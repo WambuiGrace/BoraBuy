@@ -7,6 +7,18 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { MobileNav } from "@/components/mobile-nav"
 import { format } from "date-fns"
+import {
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts"
 
 interface PriceData {
   id: string
@@ -194,6 +206,28 @@ export default function ReportsPage() {
     }
   }
 
+  // Format data for price trend chart
+  const priceTrendData = priceHistory.map((entry) => ({
+    date: format(new Date(entry.entry_date), 'MMM d'),
+    price: entry.price,
+    supplier: entry.supplier.name,
+  }))
+
+  // Format data for supplier comparison chart
+  const supplierComparisonData = supplierComparisons.map((comparison) => ({
+    name: comparison.supplierName,
+    avgPrice: comparison.avgPrice,
+    lastPrice: comparison.lastPrice,
+  }))
+
+  // Calculate price change percentage
+  const calculatePriceChange = () => {
+    if (priceHistory.length < 2) return 0
+    const oldestPrice = priceHistory[0].price
+    const latestPrice = priceHistory[priceHistory.length - 1].price
+    return ((latestPrice - oldestPrice) / oldestPrice) * 100
+  }
+
   if (loading && !priceHistory.length) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -231,6 +265,74 @@ export default function ReportsPage() {
                 ))}
               </SelectContent>
             </Select>
+          </CardContent>
+        </Card>
+
+        {/* Price Trend Chart */}
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle>Price Trends</CardTitle>
+            <CardDescription>
+              Price evolution over time
+              {priceHistory.length >= 2 && (
+                <span className={`ml-2 ${calculatePriceChange() >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                  ({calculatePriceChange().toFixed(1)}% {calculatePriceChange() >= 0 ? '↑' : '↓'})
+                </span>
+              )}
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="h-[300px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={priceTrendData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="date" />
+                  <YAxis
+                    label={{ value: 'Price (KSh)', angle: -90, position: 'insideLeft' }}
+                  />
+                  <Tooltip
+                    formatter={(value) => [`KSh ${value}`, 'Price']}
+                    labelFormatter={(label) => `Date: ${label}`}
+                  />
+                  <Legend />
+                  <Line
+                    type="monotone"
+                    dataKey="price"
+                    stroke="#2563eb"
+                    strokeWidth={2}
+                    dot={{ r: 4 }}
+                    activeDot={{ r: 8 }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Supplier Comparison Chart */}
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle>Supplier Price Comparison</CardTitle>
+            <CardDescription>Compare average and latest prices across suppliers</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="h-[300px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={supplierComparisonData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis
+                    label={{ value: 'Price (KSh)', angle: -90, position: 'insideLeft' }}
+                  />
+                  <Tooltip
+                    formatter={(value) => [`KSh ${value}`, '']}
+                  />
+                  <Legend />
+                  <Bar name="Average Price" dataKey="avgPrice" fill="#2563eb" />
+                  <Bar name="Latest Price" dataKey="lastPrice" fill="#16a34a" />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
           </CardContent>
         </Card>
 
