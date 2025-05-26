@@ -5,6 +5,8 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
 import {
   Select,
   SelectContent,
@@ -14,6 +16,7 @@ import {
 } from "@/components/ui/select";
 
 export default function SettingsPage() {
+  const router = useRouter();
   const [settings, setSettings] = useState({
     emailNotifications: true,
     pushNotifications: true,
@@ -29,7 +32,17 @@ export default function SettingsPage() {
 
   return (
     <div className="container mx-auto py-8 px-4 max-w-4xl">
-      <h1 className="text-2xl font-bold mb-6">Settings</h1>
+      <div className="mb-6 flex items-center">
+        <Button
+          variant="ghost"
+          className="mr-4"
+          onClick={() => router.push("/dashboard")}
+        >
+          <ArrowLeft className="h-4 w-4 mr-2" />
+          Back to Dashboard
+        </Button>
+        <h1 className="text-2xl font-bold">Settings</h1>
+      </div>
       <div className="grid grid-cols-1 gap-6">
         <Card>
           <CardHeader>
