@@ -9,6 +9,8 @@ import { Label } from "@/components/ui/label";
 import { useAuth } from "@/contexts/auth-context";
 import { getSupabaseClient } from "@/lib/supabase";
 import { useToast } from "@/components/ui/use-toast";
+import { ArrowLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface Profile {
   name: string;
@@ -22,6 +24,7 @@ interface Profile {
 export default function ProfilePage() {
   const { user } = useAuth();
   const { toast } = useToast();
+  const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState<Profile>({
     name: "",
@@ -169,7 +172,17 @@ export default function ProfilePage() {
 
   return (
     <div className="container mx-auto py-8 px-4 max-w-4xl">
-      <h1 className="text-2xl font-bold mb-6">Profile Settings</h1>
+      <div className="mb-6 flex items-center">
+        <Button
+          variant="ghost"
+          className="mr-4"
+          onClick={() => router.push("/dashboard")}
+        >
+          <ArrowLeft className="h-4 w-4 mr-2" />
+          Back to Dashboard
+        </Button>
+        <h1 className="text-2xl font-bold">Profile Settings</h1>
+      </div>
       <div className="grid grid-cols-1 gap-6">
         <Card>
           <CardHeader>
