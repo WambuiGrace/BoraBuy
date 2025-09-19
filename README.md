@@ -150,4 +150,7 @@ BoraBuy/
 - Built with [Next.js](https://nextjs.org/)
 - Powered by [Supabase](https://supabase.com/)
 - UI components by [shadcn/ui](https://ui.shadcn.com/)
-- Icons by [Lucide](https://lucide.dev/) 
+- Icons by [Lucide](https://lucide.dev/)
+
+## Repobeats
+![Alt](https://repobeats.axiom.co/api/embed/c77c6be426464290eaf09ee90dfe64757cb197c0.svg "Repobeats analytics image")
